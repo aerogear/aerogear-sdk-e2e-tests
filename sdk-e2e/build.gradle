@@ -1,0 +1,52 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'gradle.plugin.de.fuerstenau:BuildConfigPlugin:1.1.8'
+    }
+}
+
+ext {
+    aerogearAndroidSdkDir = "${project.buildDir}/aerogear-android-sdk"
+    androidExampleApkDir = "$aerogearAndroidSdkDir/example/build/outputs/apk/debug/example-debug.apk"
+}
+
+apply plugin: 'de.fuerstenau.buildconfig'
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile "org.jetbrains.kotlin:kotlin-test"
+    testCompile "io.appium:java-client:$appium_version"
+    testCompile "junit:junit:$junit4_version"
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        javaParameters = true   // Useful for reflection.
+    }
+}
+
+sourceSets.main.java {
+    srcDir new File(buildDir, 'gen')  //includes buildConfig
+}
+
+buildConfig {
+    packageName = "org.aerogear.sdk_e2e_tests"
+    buildConfigField 'String', 'TEST_APK', "$aerogearAndroidSdk"
+    buildConfigField 'String', 'APPIUM_SERVER_URL', "http://localhost:4723/wd/hub"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+apply from: 'sdk_tasks.gradle'
+
