@@ -1,0 +1,31 @@
+/**
+ * Handles Aerogear Services SDK cloning and building.
+ */
+
+apply plugin: 'org.ajoberstar.grgit'
+
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+task cloneAndroidSdk(group: 'sdks') {
+    doLast {
+        File target = new File(aerogearAndroidSdkDir)
+        if (target.exists()) target.deleteDir()
+        grgit.clone(dir: aerogearAndroidSdkDir, uri: androidSdkRepo)
+        grgit.close()
+    }
+}
+
+
+task assembleExampleAndroid(dependsOn: cloneAndroidSdk, type: Exec, group: 'sdks') {
+    workingDir aerogearAndroidSdkDir
+
+    environment['ANDROID_HOME'] = System.env.ANDROID_HOME ?: properties.get('sdk.dir')
+
+    commandLine 'chmod u+x ./gradlew'
+    commandLine './gradlew', ':example:assembleDebug'
+}
+
+test.dependsOn assembleExampleAndroid
