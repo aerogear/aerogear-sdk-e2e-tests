@@ -4,14 +4,15 @@ import org.aerogear.akow.pageobject.PageObject
 import org.openqa.selenium.WebElement
 
 /**
- * Created on 2/27/18.
+ * Main screen.
  */
 interface MainScreen : PageObject {
 
     val navDrawer: WebElement
-    val mnuTextFieldsItem: WebElement
+    val mnuHome: WebElement
+    val mnuAuth: WebElement
 
-    fun selectInNavDrawer(item: WebElement) {
+    fun selectNavigationItem(item: WebElement) {
         navDrawer.click()
         item.click()
     }

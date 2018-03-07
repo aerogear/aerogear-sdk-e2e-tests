@@ -26,9 +26,16 @@ apply plugin: 'de.fuerstenau.buildconfig'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "org.jetbrains.kotlin:kotlin-test"
-    testCompile "cz.sazel:akow-lib:+"
+    testCompile "cz.sazel:akow-lib:0.0.6"
     testCompile "io.appium:java-client:$appium_version"
     testCompile "junit:junit:$junit4_version"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        javaParameters = true   // Useful for reflection.
+    }
 }
 
 compileTestKotlin {
@@ -46,6 +53,8 @@ buildConfig {
     packageName = "org.aerogear.sdk_e2e_tests"
     buildConfigField 'String', 'TEST_APK', "${androidExampleApk}"
     buildConfigField 'String', 'APPIUM_SERVER_URL', "http://localhost:4723/wd/hub"
+    buildConfigField 'String', 'ADB_EXECUTABLE', "/usr/bin/adb"
+    buildConfigField 'String', 'BROWSER_PACKAGE', 'com.android.chrome'
 }
 
 sourceCompatibility = "1.8"

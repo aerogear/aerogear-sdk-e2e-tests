@@ -1,8 +1,12 @@
-package org.aerogear.akow.example.test
+package org.aerogear.sdk_e2e_tests
 
 import org.aerogear.akow.dsl.base.appium
 import org.aerogear.akow.example.test.pageobjects.android.MainAndroidScreen
-import org.aerogear.sdk_e2e_tests.BuildConfig
+import org.aerogear.sdk_e2e_tests.pageobjects.android.AuthStartAndroidScreen
+import org.aerogear.sdk_e2e_tests.pageobjects.android.AuthenticatedAndroidScreen
+import org.aerogear.sdk_e2e_tests.pageobjects.android.KeycloakLoginAndroidScreen
+import org.aerogear.sdk_e2e_tests.pageobjects.unimportant.ChromeIntroAndroidScreen
+import org.aerogear.sdk_e2e_tests.pageobjects.unimportant.SetPINDialogAndroidScreen
 
 val appium = appium(BuildConfig.APPIUM_SERVER_URL) {
     applications {
@@ -11,6 +15,11 @@ val appium = appium(BuildConfig.APPIUM_SERVER_URL) {
             }
             screens {
                 +MainAndroidScreen()
+                +AuthStartAndroidScreen()
+                +SetPINDialogAndroidScreen()
+                +ChromeIntroAndroidScreen()
+                +KeycloakLoginAndroidScreen()
+                +AuthenticatedAndroidScreen()
             }
         }
 
