@@ -13,9 +13,11 @@ buildscript {
     }
 }
 
+def aerogearAndroidSdkDir="${project.buildDir}/aerogear-android-sdk"
+def androidExampleApk = "$aerogearAndroidSdkDir/example/build/outputs/apk/debug/example-debug.apk"
+
 ext {
-    aerogearAndroidSdkDir = "${project.buildDir}/aerogear-android-sdk"
-    androidExampleApkDir = "$aerogearAndroidSdkDir/example/build/outputs/apk/debug/example-debug.apk"
+   aerogearAndroidDir=aerogearAndroidSdkDir
 }
 
 apply plugin: 'de.fuerstenau.buildconfig'
@@ -24,6 +26,7 @@ apply plugin: 'de.fuerstenau.buildconfig'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "org.jetbrains.kotlin:kotlin-test"
+    testCompile "cz.sazel:akow-lib:+"
     testCompile "io.appium:java-client:$appium_version"
     testCompile "junit:junit:$junit4_version"
 }
@@ -41,7 +44,7 @@ sourceSets.main.java {
 
 buildConfig {
     packageName = "org.aerogear.sdk_e2e_tests"
-    buildConfigField 'String', 'TEST_APK', "$aerogearAndroidSdk"
+    buildConfigField 'String', 'TEST_APK', "${androidExampleApk}"
     buildConfigField 'String', 'APPIUM_SERVER_URL', "http://localhost:4723/wd/hub"
 }
 
