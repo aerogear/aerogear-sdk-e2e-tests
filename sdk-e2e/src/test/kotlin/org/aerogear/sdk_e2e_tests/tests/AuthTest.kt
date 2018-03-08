@@ -13,6 +13,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 
 /**
@@ -44,13 +45,15 @@ class AuthTest : BaseTest() {
 
                 androidOnly {
                     maybeOn<ChromeIntroScreen> { acceptNoThanks() }
+                    sleep(5000)
                     maybeOn<SetPINDialogScreen> { cancel() }
                 }
 
+                sleep(5000)
                 on<KeycloakLoginScreen> {
                     login(USERNAME, PASSWORD)
                 }
-
+                sleep(5000)
                 on<AuthenticatedScreen> {
                     assertEquals("User 1", userNameTextBox.text)
                 }
