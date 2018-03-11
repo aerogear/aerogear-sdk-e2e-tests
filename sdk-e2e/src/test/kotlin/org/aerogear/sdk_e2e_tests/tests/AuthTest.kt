@@ -7,7 +7,6 @@ import org.aerogear.sdk_e2e_tests.clearPackage
 import org.aerogear.sdk_e2e_tests.pageobjects.AuthStartScreen
 import org.aerogear.sdk_e2e_tests.pageobjects.AuthenticatedScreen
 import org.aerogear.sdk_e2e_tests.pageobjects.KeycloakLoginScreen
-import org.aerogear.sdk_e2e_tests.pageobjects.unimportant.ChromeIntroScreen
 import org.aerogear.sdk_e2e_tests.pageobjects.unimportant.SetPINDialogScreen
 import org.junit.Before
 import org.junit.Test
@@ -44,8 +43,6 @@ class AuthTest : BaseTest() {
                 }
 
                 androidOnly {
-                    maybeOn<ChromeIntroScreen> { acceptNoThanks() }
-                    sleep(5000)
                     maybeOn<SetPINDialogScreen> { cancel() }
                 }
 
@@ -62,6 +59,7 @@ class AuthTest : BaseTest() {
 
                 selectNavigationItem(mnuAuth)
 
+                sleep(5000)
                 on<AuthenticatedScreen> {
                     assertEquals("User 1", userNameTextBox.text)
                     logoutButton.click()
