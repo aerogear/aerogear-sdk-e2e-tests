@@ -50,7 +50,7 @@ sourceSets.main.java {
 }
 
 buildConfig {
-    packageName = "org.aerogear.sdk_e2e_tests"
+    packageName = "org.aerogear.sdkE2ETests"
     buildConfigField 'String', 'TEST_APK', "${androidExampleApk}"
     buildConfigField 'String', 'APPIUM_SERVER_URL', "http://localhost:4723/wd/hub"
     buildConfigField 'String', 'ADB_EXECUTABLE', "/usr/bin/adb"

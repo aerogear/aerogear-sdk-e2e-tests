@@ -1,4 +1,4 @@
-package org.aerogear.sdk_e2e_tests.pageobjects.unimportant
+package org.aerogear.sdkE2ETests.pageobjects.unimportant
 
 import org.aerogear.akow.pageobject.AndroidScreen
 import org.aerogear.akow.pageobject.PageObject

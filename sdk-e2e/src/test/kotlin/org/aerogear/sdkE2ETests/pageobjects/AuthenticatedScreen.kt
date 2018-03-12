@@ -1,4 +1,4 @@
-package org.aerogear.sdk_e2e_tests.pageobjects
+package org.aerogear.sdkE2ETests.pageobjects
 
 import org.aerogear.akow.pageobject.PageObject
 import org.openqa.selenium.WebElement

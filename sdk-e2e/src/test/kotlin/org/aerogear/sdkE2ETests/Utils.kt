@@ -1,4 +1,4 @@
-package org.aerogear.sdk_e2e_tests
+package org.aerogear.sdkE2ETests
 
 import java.io.BufferedReader
 

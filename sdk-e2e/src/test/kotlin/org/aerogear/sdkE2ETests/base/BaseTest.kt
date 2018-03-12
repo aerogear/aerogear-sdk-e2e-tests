@@ -1,7 +1,7 @@
-package org.aerogear.sdk_e2e_tests.base
+package org.aerogear.sdkE2ETests.base
 
 import org.aerogear.akow.test.AkowTest
-import org.aerogear.sdk_e2e_tests.appium
+import org.aerogear.sdkE2ETests.appium
 import org.junit.runners.Parameterized
 
 /**

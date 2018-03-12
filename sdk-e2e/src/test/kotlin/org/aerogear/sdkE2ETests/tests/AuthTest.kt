@@ -1,13 +1,13 @@
-package org.aerogear.sdk_e2e_tests.tests
+package org.aerogear.sdkE2ETests.tests
 
 import org.aerogear.akow.example.test.pageobjects.MainScreen
-import org.aerogear.sdk_e2e_tests.BuildConfig
-import org.aerogear.sdk_e2e_tests.base.BaseTest
-import org.aerogear.sdk_e2e_tests.clearPackage
-import org.aerogear.sdk_e2e_tests.pageobjects.AuthStartScreen
-import org.aerogear.sdk_e2e_tests.pageobjects.AuthenticatedScreen
-import org.aerogear.sdk_e2e_tests.pageobjects.KeycloakLoginScreen
-import org.aerogear.sdk_e2e_tests.pageobjects.unimportant.SetPINDialogScreen
+import org.aerogear.sdkE2ETests.BuildConfig
+import org.aerogear.sdkE2ETests.base.BaseTest
+import org.aerogear.sdkE2ETests.clearPackage
+import org.aerogear.sdkE2ETests.pageobjects.AuthStartScreen
+import org.aerogear.sdkE2ETests.pageobjects.AuthenticatedScreen
+import org.aerogear.sdkE2ETests.pageobjects.KeycloakLoginScreen
+import org.aerogear.sdkE2ETests.pageobjects.unimportant.SetPINDialogScreen
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
