@@ -7,7 +7,15 @@ apply plugin: 'org.ajoberstar.grgit'
 
 
 Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+File localProperties = project.rootProject.file('local.properties')
+if (localProperties.exists()) {
+    properties.load(localProperties.newDataInputStream())
+} else {
+    println("local.properties not found, skipping loading")
+    if (System.env.ANDROID_HOME==null) {
+        throw new IllegalArgumentException("There is no ANDROID_HOME environment variable defined, do you have Android SDK installed?")
+    }
+}
 
 task cloneAndroidSdk(group: 'sdks') {
     doLast {
