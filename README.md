@@ -20,6 +20,12 @@ Then execute:
 $ ./gradlew test
 ```
 
+# How to run against different Appium server
+
+```text
+$ APPIUM_SERVER='yourserverhostname:4723' ./gradlew test
+```
+
 # How to write a new test using page objects?
 
 1. Create new test class in the `org.aerogear.sdkE2ETests.tests` extending [`BaseTest`](sdk-e2e/src/test/kotlin/org/aerogear/sdkE2ETests/base/BaseTest.kt).

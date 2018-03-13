@@ -13,11 +13,22 @@ buildscript {
     }
 }
 
-def aerogearAndroidSdkDir="${project.buildDir}/aerogear-android-sdk"
+apply from: 'utils.gradle'
+
+def aerogearAndroidSdkDir = "${project.buildDir}/aerogear-android-sdk"
 def androidExampleApk = "$aerogearAndroidSdkDir/example/build/outputs/apk/debug/example-debug.apk"
+def serverUrl = "http://${System.env.APPIUM_SERVER ?: "localhost:4723"}/wd/hub"
+
+
+task checkAppium {
+    if (System.env.APPIUM_SERVER == null && !checkSocket(4723)) {
+        //checks if local Appium instance is running
+        throw new IllegalStateException("Local appium server is not running.")
+    }
+}
 
 ext {
-   aerogearAndroidDir=aerogearAndroidSdkDir
+    aerogearAndroidDir = aerogearAndroidSdkDir
 }
 
 apply plugin: 'de.fuerstenau.buildconfig'
@@ -45,14 +56,17 @@ compileTestKotlin {
     }
 }
 
+test.dependsOn 'cleanTest'
+test.dependsOn checkAppium
+
 sourceSets.main.java {
     srcDir new File(buildDir, 'gen')  //includes buildConfig
 }
 
 buildConfig {
     packageName = "org.aerogear.sdkE2ETests"
-    buildConfigField 'String', 'TEST_APK', "${androidExampleApk}"
-    buildConfigField 'String', 'APPIUM_SERVER_URL', "http://localhost:4723/wd/hub"
+    buildConfigField 'String', 'TEST_APK', androidExampleApk
+    buildConfigField 'String', 'APPIUM_SERVER_URL', serverUrl
     buildConfigField 'String', 'ADB_EXECUTABLE', "/usr/bin/adb"
     buildConfigField 'String', 'BROWSER_PACKAGE', 'com.android.chrome'
 }
@@ -61,4 +75,3 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 apply from: 'sdk_tasks.gradle'
-

@@ -1,0 +1,17 @@
+ext {
+
+    /**
+     * Checks if localhost has specified port open.
+     * @param portNumber
+     * @return
+     */
+    ext.checkSocket =
+            {
+                try {
+                    new Socket("localhost", it.toInteger())
+                    return true
+                } catch (Exception ignored) {
+                    return false
+                }
+            }
+}
