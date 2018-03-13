@@ -36,6 +36,6 @@ $ APPIUM_SERVER='yourserverhostname:4723' ./gradlew test
     * implement test logic as methods in the page object (platform indepenent in the interface)
     * add level 2 page object into the `screens` section in [`init.kt`](sdk-e2e/src/test/kotlin/org/aerogear/sdkE2ETests/init.kt)
     
-3. Write your test using [akow DSL](https://github.com/aerogear/akow). 
+3. Write your test (like one in [`AuthTest`](sdk-e2e/src/test/kotlin/org/aerogear/sdkE2ETests/tests/AuthTest.kt)) using [akow DSL](https://github.com/aerogear/akow). 
 
 More detailed approach for writing tests using the Akow library is in [its documentation](https://github.com/aerogear/akow). 
